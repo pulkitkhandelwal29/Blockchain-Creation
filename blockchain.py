@@ -28,3 +28,26 @@ class Blockchain:
         #adding block in the chain of blocks
         self.chain.append(block)
         return block
+    
+    
+    def get_previous_block(self):
+        '''Return the last block of the chain'''
+        return self.chain[-1]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
