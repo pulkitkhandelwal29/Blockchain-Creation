@@ -15,3 +15,16 @@ class Blockchain:
         self.create_block(proof = 1, previous_hash = '0')
         
     
+    #this will create block once it is mined
+    def create_block(self, proof, previous_hash):
+        ''' Creating block with all the things required in block'''
+        
+        block = { 'index' : len(self.chain)+1 ,
+                  'timestamp' : str(datetime.datetime.now()),
+                  'proof' : proof,
+                   'previous_hash' : previous_hash
+                 }
+        
+        #adding block in the chain of blocks
+        self.chain.append(block)
+        return block
