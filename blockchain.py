@@ -79,7 +79,15 @@ class Blockchain:
     
     
     
-    
+# Mining our Blockchain
+
+
+## Create a web app
+app = Flask(__name__)
+
+## Create a blockchain
+blockchain = Blockchain()
+  
     
     
     
