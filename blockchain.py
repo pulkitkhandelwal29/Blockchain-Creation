@@ -87,7 +87,29 @@ app = Flask(__name__)
 
 ## Create a blockchain
 blockchain = Blockchain()
-  
+
+## Mining a new block
+@app.route('/mine_block', methods = ['GET'])
+def mine_block():
+    #return previous block
+    previous_block = blockchain.get_previous_block()
+    #returns previous proof of block
+    previous_proof = previous_block['proof']
+    proof = blockchain.proof_of_work(previous_proof)
+    
+    #get previous hash
+    previous_hash = blockchain.hash(previous_block)
+    
+    #create block function invoked
+    block = blockchain.create_block(proof, previous_hash)
+    
+    response = {'message' : 'Congratulations, you just mined a block!',
+                'index' : block['index'],
+                'timestamp' = block['timestamp'],
+                'proof' : block['proof'],
+                'previous_hash' : block['previous_hash']
+                }
+    return jsonify(response), 200 #for the HTTP status code
     
     
     
