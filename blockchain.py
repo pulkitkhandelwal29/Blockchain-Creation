@@ -105,7 +105,7 @@ def mine_block():
     
     response = {'message' : 'Congratulations, you just mined a block!',
                 'index' : block['index'],
-                'timestamp' = block['timestamp'],
+                'timestamp' : block['timestamp'],
                 'proof' : block['proof'],
                 'previous_hash' : block['previous_hash']
                 }
@@ -119,8 +119,41 @@ def get_chain():
                 'length' : len(blockchain.chain)               
                 }
     return jsonify(response), 200
+
+
+## Check the blockchain is valid or not
+@app.route('/is_valid', methods = ['GET'])
+def is_valid():
+    is_valid = blockchain.is_chain_valid(blockchain.chain)
+    if is_valid:
+        response = {'message' : 'Blockchain is valid !'}
+    else:
+        response = {'message' : 'Houston, we have a problem. Blockchain is not valid '}
     
-    
+    return jsonify(response), 200
+
+
+
+
+
+## Running the app
+app.run(port = 5000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
