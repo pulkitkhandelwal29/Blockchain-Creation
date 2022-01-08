@@ -52,6 +52,12 @@ class Blockchain:
         return new_proof
     
     
+    def hash(self,block):
+        '''Returns the SHA256 HASH'''
+        #json we have used as our block is in dictionary form
+        encoded_block = json.dumps(block,sort_keys=True).encode()
+        return hashlib.sha256(encoded_block).hexdigest()
+    
     
     
     
