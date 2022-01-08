@@ -35,7 +35,21 @@ class Blockchain:
         return self.chain[-1]
     
     
-    
+    def proof_of_work(self,previous_proof):
+        '''check the proof of work, to add the block into the blockchain'''
+        new_proof = 1
+        check_proof = False
+        while check_proof is False:
+            #This is the complex operation equation that miners will solve
+            #Equation should be encoded in strings as the requirement of SHA256 and return the hexadecimal form from SHA object
+            hash_operation = hashlib.sha256(str(new_proof ** 2 - previous_proof ** 2).encode()).hexdigest()
+            
+            #if the hash_operation has starting 4 zeros then miner won
+            if hash_operation[:4] == '0000':
+                check_proof = True
+            else:
+                new_proof += 1 #Go with the next value to try for the solving of equation
+        return new_proof
     
     
     
